@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <title>ToDo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <div id="notification" class="notification"></div>
+    <div id="home">
+      <div class="zsto-user-info">
+        <div class="zsto-user-image"></div>
+        <div>
+          <h1>Hi, Nikhil👋</h1>
+          <p>Your daily adventure starts now.</p>
+        </div>
+
+        <i class="fa-solid fa-plus" id="add-category"></i>
+      </div>
+
+      <div class="zsto-main-task-info">
+        <div class="zsto-task-box zsto-total-task">
+          <i class="fa-solid fa-list-check"></i>
+
+          <div>
+            <h3>Total Task</h3>
+            <p>0 Tasks</p>
+          </div>
+        </div>
+        <div class="zsto-task-box zsto-yet-to-start">
+          <i class="fa-solid fa-clock"></i>
+
+          <div>
+            <h3>Yet To Start</h3>
+            <p>0 Tasks</p>
+          </div>
+        </div>
+
+        <div class="zsto-task-box zsto-in-progress">
+          <i class="fa-brands fa-font-awesome"></i>
+
+          <div>
+            <h3>Flagged</h3>
+            <p>0 Tasks</p>
+          </div>
+        </div>
+
+        <div class="zsto-task-box zsto-completed-task">
+          <i class="fa-solid fa-circle-check"></i>
+
+          <div>
+            <h3>Completed</h3>
+            <p>0 Tasks</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="zsto-recent-task" id="category-container">
+        <h1>Recent Category</h1>
+        <!-- <img src="nothing-there.png"> -->
+      </div>
+      <div id="overlay" class="overlay"></div>
+      <div class="zsto-add-cateogry" id="add-category-form">
+        <h1>Add Category</h1>
+        <p id="error-msg"></p>
+        <p>Category Name:</p>
+        <input
+          type="text"
+          value=""
+          placeholder="Category Name"
+          id="category-name-input"
+        />
+        <p>Category Description:</p>
+        <input
+          type="text"
+          value=""
+          placeholder="Category Description"
+          id="category-desp-input"
+        />
+        <button type="button" class="zsto-category-cancel" id="category-cancel">
+          Cancel
+        </button>
+        <button type="button" class="zsto-category-ok" id="category-add">
+          OK
+        </button>
+      </div>
+
+      <div id="category-div" class="zsto-category-div">
+        <div class="zsto-category-nav">
+          <i class="fa-solid fa-plus" id="category-plus"></i>
+          <h1 id="category-name">Name</h1>
+          <i class="fa-solid fa-xmark" id="category-div-close"></i>
+        </div>
+        <p id="category-desp">Description</p>
+
+        <div id="todo-list">
+          <h2>Your Todos</h2>
+          <div id="todos"></div>
+        </div>
+      </div>
+
+      <div class="zsto-add-cateogry zsto-todo-width" id="add-todo-form">
+        <h1>Add Todo</h1>
+        <p id="error-msg-todo">Please enter a todo name.</p>
+        <p>Todo Name:</p>
+        <input
+          type="text"
+          value=""
+          placeholder="Todo Name"
+          id="todo-name-input"
+        />
+        <p>Priority</p>
+        <select id="priority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+        <button type="button" class="zsto-category-cancel" id="todo-cancel">
+          Cancel
+        </button>
+        <button type="button" class="zsto-category-ok" id="todo-add">OK</button>
+      </div>
+
+      <div class="zsto-add-cateogry zsto-todo-width" id="edit-settings">
+        <h1>Edit Todo</h1>
+        <p id="error-msg-todo"></p>
+        <p>Todo Name:</p>
+        <input
+          type="text"
+          value=""
+          placeholder="Todo Name"
+          id="todo-name-input-edit"
+        />
+        <p>Priority</p>
+        <select id="priority-edit">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+        <button
+          type="button"
+          class="zsto-category-cancel"
+          id="todo-edit-cancel"
+        >
+          Cancel
+        </button>
+        <button type="button" class="zsto-category-ok" id="todo-edit-ok">
+          OK
+        </button>
+      </div>
+
+      <div class="zsto-add-cateogry" id="filtered-tasks">
+        <div class="zsto-filter-nav">
+          <h1>FILTER TASKS</h1>
+          <i class="fa-solid fa-xmark" id="filtered-div-close"></i>
+        </div>
+        <div id="filtered-tasks-div"></div>
+      </div>
+
+      <div class="zsto-add-cateogry" id="edit-categories">
+        <h1>EDIT CATEGORY</h1>
+        <p id="error-msg-todo-edit"></p>
+        <p>Category Name:</p>
+        <input
+          type="text"
+          value=""
+          placeholder="Category Name"
+          id="category-name-input-edit"
+        />
+        <p>Category Description:</p>
+        <input
+          type="text"
+          value=""
+          placeholder="Category Description"
+          id="category-desp-input-edit"
+        />
+        <button
+          type="button"
+          class="zsto-category-cancel"
+          id="todo-category-edit-cancel"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="zsto-category-ok"
+          id="todo-category-edit-ok"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+
+    <div class="zsto-todo-filter" id="zsto-filter-div">
+      <div class="zsto-filter-top">
+        <h1>FILTER TODOS</h1>
+        <!-- <i class="fa-solid fa-gear" id="settings-open"></i> -->
+      </div>
+
+      <div class="zsto-filter-cateogry" id="filter">
+        <div class="zsto-category-filter-div">
+          <h2>Category</h2>
+          <select id="category-filter">
+            <option value="All">All</option>
+          </select>
+        </div>
+
+        <div class="zsto-priority-filter-div">
+          <h2>Priority</h2>
+          <select id="priority-filter">
+            <option value="All">All</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+
+        <div class="zsto-flagged-filter-div">
+          <h2>Flagged</h2>
+          <input type="checkbox" id="checkFlagged" />
+          <label for="checkFlagged" class="zsto-flagged"></label>
+        </div>
+
+        <div class="zsto-flagged-completed-div">
+          <h2>Completed</h2>
+          <input type="checkbox" id="checkCompleted" />
+          <label for="checkCompleted" class="zsto-flagged"></label>
+        </div>
+
+        <button
+          type="button"
+          class="zsto-category-cancel"
+          id="todo-filter-cancel"
+        >
+          Cancel
+        </button>
+        <button type="button" class="zsto-category-ok" id="todo-filter-ok">
+          FILTER
+        </button>
+      </div>
+
+      <!-- <div class="zsto-filtered-tasks"></div> -->
+    </div>
+
+    <div class="zsto-todo-search" id="zsto-search-div">
+      <div class="zsto-search-top">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h1>SEARCH TODOS</h1>
+      </div>
+
+      <input type="search" placeholder="Search for a task" id="search-task" />
+      <div id="searched-tasks"></div>
+      <!-- <div>
+            <img src="https://www.bokfinancial.com/-/media/Images/Heroes/404a.ashx?h=868&iar=0&w=1534&hash=7F078A4F642057BEC8454F508D7877D0">
+            <p>Not found</p>
+        </div> -->
+    </div>
+
+    <nav class="zsto-nav">
+      <i class="fa-solid fa-magnifying-glass" id="search"></i>
+      <i class="fa-solid fa-house selected" id="home-btn"></i>
+      <i class="fa-solid fa-filter" id="zsto-filter"></i>
+    </nav>
+
+    <img
+      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fd%2Fda%2FPurple_flower_(4764445139).jpg&f=1&nofb=1&ipt=c6c43e7d1debda63830a2be40acf03ab59e45d000de38a5135402c75b7e1db61&ipo=images"
+      style="width: 100px; height: 100px"
+    />
+  </body>
+  <script src="script.js"></script>
+  <!-- <script
+    src="https://cdn.userway.org/widget.js"
+    data-account="2Cu7zgCWaz"
+  ></script> -->
+  <script src="https://appsail-10096252260.development.catalystappsail.com/new.js"></script>
+</html>
